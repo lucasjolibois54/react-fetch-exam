@@ -65,30 +65,49 @@ function Home() {
     };
   
     return (
-      <div>
-        <div>
-          <input
-            type="text"
-            value={newItem}
-            onChange={(e) => setNewItem(e.target.value)}
-            placeholder="Enter a new item"
-          />
-          <button onClick={addNewItem}>Add Item</button>
+<div className="max-w-6xl mx-auto px-5">
+<h1 className="text-3xl lg:text-5xl text-center font-bold mt-16 mb-16">React Fetch</h1>
+  <div className="flex mb-10">
+    <input
+      className="border rounded-l py-2 px-4 w-full"
+      type="text"
+      value={newItem}
+      onChange={(e) => setNewItem(e.target.value)}
+      placeholder="Enter a new item"
+    />
+    <button
+      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r"
+      onClick={addNewItem}
+    >
+      Add Item
+    </button>
+  </div>
+
+  {loading ? (
+    <p>Loading data...</p>
+  ) : (
+    <ul className="mt-4">
+      {data.map((item) => (
+        <li
+          key={item.id}
+          className="flex items-center justify-between py-2 border-b"
+        >
+        <div className='flex flex-col'>
+        <p className="font-bold">{item.title}</p>
+        <p className='w-5/6'>{item.body}</p>
         </div>
-  
-        {loading ? (
-          <p>Loading data...</p>
-        ) : (
-          <ul>
-            {data.map((item) => (
-              <li key={item.id}>
-                {item.title}
-                <button onClick={() => deleteItem(item.id)}>Delete</button>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+          <button
+            className="text-red-500 hover:text-red-700"
+            onClick={() => deleteItem(item.id)}
+          >
+            Delete
+          </button>
+        </li>
+      ))}
+    </ul>
+  )}
+</div>
+
     );
   };
   
