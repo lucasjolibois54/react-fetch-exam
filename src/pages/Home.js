@@ -41,7 +41,7 @@ function Home() {
           throw new Error('Error adding new item');
         }
         const jsonData = await response.json();
-        setData([...data, jsonData]);
+        setData([jsonData, ...data]);
         setNewItem('');
       } catch (error) {
         console.error('Error adding new item:', error);
